@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropol University of Technology | Excellence in Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #1a365d;
+            --secondary: #c05621;
+            --accent: #ecc94b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), 
+                        url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .active-link {
+            color: var(--secondary) !important;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav fixed w-full z-50 top-0 left-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                    <div class="bg-blue-900 p-2 rounded-lg">
+                        <i class="fas fa-university text-white text-2xl"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-blue-900 hidden sm:block">METROPOL UNIVERSITY</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wider">
+                    <a href="javascript:void(0)" onclick="showSection('home')" class="nav-link hover:text-orange-700 transition duration-300">Home</a>
+                    <a href="javascript:void(0)" onclick="showSection('about')" class="nav-link hover:text-orange-700 transition duration-300">About</a>
+                    <a href="javascript:void(0)" onclick="showSection('courses')" class="nav-link hover:text-orange-700 transition duration-300">Courses</a>
+                    <a href="javascript:void(0)" onclick="showSection('faculty')" class="nav-link hover:text-orange-700 transition duration-300">Faculty</a>
+                    <a href="javascript:void(0)" onclick="showSection('contact')" class="nav-link hover:text-orange-700 transition duration-300">Contact</a>
+                    <button onclick="showSection('portal')" class="bg-blue-900 text-white px-5 py-2 rounded-full hover:bg-blue-800 transition shadow-lg">Student Portal</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-blue-900 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 fade-in">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="javascript:void(0)" onclick="showSection('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Home</a>
+                <a href="javascript:void(0)" onclick="showSection('about')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">About</a>
+                <a href="javascript:void(0)" onclick="showSection('courses')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Courses</a>
+                <a href="javascript:void(0)" onclick="showSection('faculty')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Faculty</a>
+                <a href="javascript:void(0)" onclick="showSection('contact')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Contact</a>
+                <a href="javascript:void(0)" onclick="showSection('portal')" class="block px-3 py-2 rounded-md text-base font-medium bg-blue-900 text-white">Student Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="pt-20 min-h-screen">
+
+        <!-- HOME SECTION -->
+        <section id="home-section" class="fade-in">
+            <!-- Hero -->
+            <div class="hero-gradient h-[600px] flex items-center justify-center text-center text-white px-4">
+                <div class="max-w-3xl">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Shaping the Future of Innovation</h1>
+                    <p class="text-lg md:text-xl mb-8 opacity-90">Empowering students through world-class engineering education, cutting-edge research, and industry-leading faculty.</p>
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button onclick="showSection('courses')" class="bg-yellow-500 text-blue-900 font-bold px-8 py-4 rounded-lg hover:bg-yellow-400 transition transform hover:scale-105">Explore Departments</button>
+                        <button onclick="showSection('about')" class="border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="max-w-7xl mx-auto px-4 -mt-16 relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-6 rounded-xl shadow-xl text-center">
+                    <div class="text-3xl font-bold text-blue-900">150+</div>
+                    <div class="text-gray-500 text-sm">Faculty Members</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl text-center">
+                    <div class="text-3xl font-bold text-blue-900">5000+</div>
+                    <div class="text-gray-500 text-sm">Current Students</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl text-center">
+                    <div class="text-3xl font-bold text-blue-900">95%</div>
+                    <div class="text-gray-500 text-sm">Placement Rate</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl text-center">
+                    <div class="text-3xl font-bold text-blue-900">A++</div>
+                    <div class="text-gray-500 text-sm">NAAC Accreditation</div>
+                </div>
+            </div>
+
+            <!-- News & Announcements -->
+            <div class="max-w-7xl mx-auto px-4 py-20">
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="text-3xl font-bold text-blue-900">Latest Announcements</h2>
+                    <a href="#" class="text-orange-700 font-semibold hover:underline">View All News &rarr;</a>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+                        <div class="bg-blue-900 h-2"></div>
+                        <div class="p-6">
+                            <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Admissions</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">2025 Undergraduate Admissions Open</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Applications for the academic year 2025-26 are now being accepted for all engineering streams.</p>
+                            <div class="mt-4 text-xs text-gray-400">March 10, 2024</div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+                        <div class="bg-blue-900 h-2"></div>
+                        <div class="p-6">
+                            <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Events</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">National Tech Symposium '24</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Join us for a three-day celebration of technology, featuring guest speakers from NASA and Google.</p>
+                            <div class="mt-4 text-xs text-gray-400">March 05, 2024</div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+                        <div class="bg-blue-900 h-2"></div>
+                        <div class="p-6">
+                            <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Placements</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">Microsoft Campus Recruitment</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Top-tier recruiters visiting our campus for the final year placements starting next week.</p>
+                            <div class="mt-4 text-xs text-gray-400">March 01, 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about-section" class="hidden-section fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold text-blue-900 mb-6 uppercase tracking-tight">Our Legacy</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Founded in 1995, Metropol University of Technology has been a pioneer in higher education. Our campus spans over 200 acres of lush greenery, providing an ideal environment for academic pursuits and personal growth.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-orange-100 p-3 rounded-lg text-orange-700">
+                                    <i class="fas fa-eye text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-blue-900">Our Vision</h3>
+                                    <p class="text-gray-600 text-sm">To be a globally recognized institution that fosters innovation and excellence in engineering and technology.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-orange-100 p-3 rounded-lg text-orange-700">
+                                    <i class="fas fa-bullseye text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-blue-900">Our Mission</h3>
+                                    <p class="text-gray-600 text-sm">To provide comprehensive education, promote interdisciplinary research, and prepare students for leadership roles in a global society.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="rounded-lg shadow-md hover:scale-105 transition duration-500" alt="Campus">
+                        <img src="https://images.unsplash.com/photo-1523050853023-8c2d27443efb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="rounded-lg shadow-md mt-8 hover:scale-105 transition duration-500" alt="Library">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COURSES SECTION -->
+        <section id="courses-section" class="hidden-section fade-in py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-blue-900 mb-4">Academic Departments</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Explore our range of undergraduate and postgraduate programs designed to prepare you for the industrial demands of the future.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- CS Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-hover text-center">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Computer Science</h3>
+                        <p class="text-sm text-gray-500 mb-6">AI, Data Science, Cyber Security, and Software Engineering.</p>
+                        <ul class="text-left text-xs text-gray-600 space-y-2 mb-6">
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> 4 Year B.Tech</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> 2 Year M.Tech</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> PhD Program</li>
+                        </ul>
+                        <button class="w-full py-2 border-2 border-blue-900 text-blue-900 rounded-lg font-bold hover:bg-blue-900 hover:text-white transition">View Curriculum</button>
+                    </div>
+
+                    <!-- Electronics Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-hover text-center">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Electronics & Comm</h3>
+                        <p class="text-sm text-gray-500 mb-6">VLSI, Embedded Systems, and Communication Networks.</p>
+                        <ul class="text-left text-xs text-gray-600 space-y-2 mb-6">
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> 4 Year B.Tech</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Advanced Labs</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Robotics Club</li>
+                        </ul>
+                        <button class="w-full py-2 border-2 border-blue-900 text-blue-900 rounded-lg font-bold hover:bg-blue-900 hover:text-white transition">View Curriculum</button>
+                    </div>
+
+                    <!-- Mechanical Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-hover text-center">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Mechanical Engg</h3>
+                        <p class="text-sm text-gray-500 mb-6">Thermodynamics, CAD/CAM, and Robotics Control.</p>
+                        <ul class="text-left text-xs text-gray-600 space-y-2 mb-6">
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Industrial Training</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> 4 Year B.Tech</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Research Wing</li>
+                        </ul>
+                        <button class="w-full py-2 border-2 border-blue-900 text-blue-900 rounded-lg font-bold hover:bg-blue-900 hover:text-white transition">View Curriculum</button>
+                    </div>
+
+                    <!-- Civil Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-hover text-center">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Civil Engineering</h3>
+                        <p class="text-sm text-gray-500 mb-6">Structural Design, Hydrology, and Urban Planning.</p>
+                        <ul class="text-left text-xs text-gray-600 space-y-2 mb-6">
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Field Projects</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> 4 Year B.Tech</li>
+                            <li><i class="fas fa-check text-blue-900 mr-2"></i> Smart Cities Focus</li>
+                        </ul>
+                        <button class="w-full py-2 border-2 border-blue-900 text-blue-900 rounded-lg font-bold hover:bg-blue-900 hover:text-white transition">View Curriculum</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACULTY SECTION -->
+        <section id="faculty-section" class="hidden-section fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-blue-900 mb-4">Our Distinguished Faculty</h2>
+                    <p class="text-gray-600">Learn from some of the brightest minds in the industry with years of research and teaching experience.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="faculty-list">
+                    <!-- Faculty cards will be generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDENT PORTAL SECTION -->
+        <section id="portal-section" class="hidden-section fade-in py-20 bg-blue-900">
+            <div class="max-w-7xl mx-auto px-4">
+                <!-- Login Simulation -->
+                <div id="login-form-container" class="max-w-md mx-auto bg-white rounded-3xl p-8 shadow-2xl">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-blue-900">Student Portal Login</h2>
+                        <p class="text-gray-500 text-sm mt-2">Enter your credentials to access your dashboard</p>
+                    </div>
+                    <form id="login-form" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Student ID</label>
+                            <input type="text" id="username" placeholder="e.g. MUT12345" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                            <input type="password" id="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition">Sign In</button>
+                        <p class="text-center text-xs text-gray-400">Hint: Use MUT123 / password</p>
+                    </form>
+                </div>
+
+                <!-- Dashboard Simulation (Hidden initially) -->
+                <div id="portal-dashboard" class="hidden text-white">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 space-y-4 md:space-y-0">
+                        <div>
+                            <h1 class="text-3xl font-bold">Welcome back, Alex Rivera!</h1>
+                            <p class="text-blue-200">B.Tech CS - Semester 6 | Year 3</p>
+                        </div>
+                        <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg text-sm font-bold transition">Logout</button>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="p-3 bg-green-500 rounded-xl"><i class="fas fa-calendar-check text-xl"></i></div>
+                                <h3 class="text-xl font-bold">Attendance</h3>
+                            </div>
+                            <div class="text-5xl font-bold mb-2">88.5%</div>
+                            <p class="text-green-300 text-sm">Above threshold (75%)</p>
+                            <div class="w-full bg-white/20 h-2 rounded-full mt-6">
+                                <div class="bg-green-500 h-full rounded-full" style="width: 88.5%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="p-3 bg-yellow-500 rounded-xl"><i class="fas fa-tasks text-xl text-blue-900"></i></div>
+                                <h3 class="text-xl font-bold">Assignments</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                                    <span class="text-sm">Database Mgmt</span>
+                                    <span class="bg-yellow-500 text-blue-900 text-[10px] font-bold px-2 py-1 rounded">PENDING</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                                    <span class="text-sm">AI Project 1</span>
+                                    <span class="bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded">SUBMITTED</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm">Ethics Seminar</span>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded">OVERDUE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="p-3 bg-blue-500 rounded-xl"><i class="fas fa-bullhorn text-xl"></i></div>
+                                <h3 class="text-xl font-bold">Academic Notices</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-white/5 p-3 rounded-lg hover:bg-white/10 cursor-pointer">
+                                    <h4 class="text-sm font-bold">Mid-term Exam Dates</h4>
+                                    <p class="text-[10px] text-blue-200">Start from April 15, 2024</p>
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-lg hover:bg-white/10 cursor-pointer">
+                                    <h4 class="text-sm font-bold">Hackathon Registration</h4>
+                                    <p class="text-[10px] text-blue-200">Open until midnight today</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="hidden-section fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-4xl font-bold text-blue-900 mb-6">Get in Touch</h2>
+                        <p class="text-gray-600 mb-8">Have any questions about our curriculum or admissions? Our team is here to help.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-orange-700 text-xl"><i class="fas fa-map-marker-alt"></i></div>
+                                <p class="text-gray-700">123 Tech Avenue, Innovation City, NY 10001</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-orange-700 text-xl"><i class="fas fa-phone"></i></div>
+                                <p class="text-gray-700">+1 (555) 000-1111</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-orange-700 text-xl"><i class="fas fa-envelope"></i></div>
+                                <p class="text-gray-700">info@metropol.edu</p>
+                            </div>
+                        </div>
+
+                        <!-- Map Placeholder -->
+                        <div class="mt-10 rounded-2xl overflow-hidden shadow-md h-64 bg-gray-200 flex items-center justify-center border-4 border-white">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-4xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500 font-medium">Interactive Map Placeholder</p>
+                                <p class="text-xs text-gray-400 px-10 mt-2">In a production environment, an API like Google Maps would render here.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John Doe">
+                                <span id="error-name" class="text-red-500 text-[10px] hidden">Please enter your name</span>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="john@example.com">
+                                <span id="error-email" class="text-red-500 text-[10px] hidden">Please enter a valid email</span>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+                                <textarea id="contact-message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can we help?"></textarea>
+                                <span id="error-message" class="text-red-500 text-[10px] hidden">Message cannot be empty</span>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="bg-white p-1 rounded-md">
+                        <i class="fas fa-university text-blue-950 text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight">METROPOL UNIVERSITY</span>
+                </div>
+                <p class="text-blue-200 text-sm max-w-sm mb-6">Excellence in technological education since 1995. Accredited by the National Board and recognized globally for engineering innovation.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-orange-400 uppercase text-xs tracking-widest">Quick Links</h4>
+                <ul class="space-y-4 text-sm text-blue-100">
+                    <li><a href="#" class="hover:text-white transition">Admission Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Alumni Association</a></li>
+                    <li><a href="#" class="hover:text-white transition">Career Opportunities</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-orange-400 uppercase text-xs tracking-widest">Resources</h4>
+                <ul class="space-y-4 text-sm text-blue-100">
+                    <li><a href="#" class="hover:text-white transition">Digital Library</a></li>
+                    <li><a href="#" class="hover:text-white transition">E-Learning Portal</a></li>
+                    <li><a href="#" class="hover:text-white transition">Research Journals</a></li>
+                    <li><a href="#" class="hover:text-white transition">Campus Map</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-white/10 text-center text-blue-300 text-xs">
+            <p>&copy; 2024 Metropol University of Technology. All Rights Reserved. Designed for Excellence.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Faculty Data
+        const facultyData = [
+            { name: "Dr. Sarah Johnson", role: "Dean of CS", dept: "Computer Science", img: "https://i.pravatar.cc/150?u=sarah" },
+            { name: "Prof. Robert Chen", role: "Sr. Professor", dept: "Electronics", img: "https://i.pravatar.cc/150?u=robert" },
+            { name: "Dr. Elena Petrova", role: "HOD Mechanical", dept: "Mechanical Engg", img: "https://i.pravatar.cc/150?u=elena" },
+            { name: "James Wilson", role: "Asst. Professor", dept: "Civil Engineering", img: "https://i.pravatar.cc/150?u=james" },
+            { name: "Dr. Marcus Thorne", role: "Research Head", dept: "AI & Robotics", img: "https://i.pravatar.cc/150?u=marcus" },
+            { name: "Linda G. Miller", role: "Sr. Faculty", dept: "Cyber Security", img: "https://i.pravatar.cc/150?u=linda" },
+            { name: "Dr. Ken Watanabe", role: "Professor", dept: "Thermal Engg", img: "https://i.pravatar.cc/150?u=ken" },
+            { name: "Anita Rao", role: "Asst. Professor", dept: "Data Science", img: "https://i.pravatar.cc/150?u=anita" }
+        ];
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navigation Logic
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = ['home', 'about', 'courses', 'faculty', 'portal', 'contact'];
+            sections.forEach(s => {
+                document.getElementById(`${s}-section`).classList.add('hidden-section');
+            });
+
+            // Show current section
+            document.getElementById(`${sectionId}-section`).classList.remove('hidden-section');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Update Active Link UI
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                l.classList.remove('active-link');
+                if(l.innerText.toLowerCase() === sectionId) l.classList.add('active-link');
+            });
+
+            // Close mobile menu
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Faculty Generation
+        function loadFaculty() {
+            const container = document.getElementById('faculty-list');
+            container.innerHTML = facultyData.map(f => `
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 card-hover text-center">
+                    <img src="${f.img}" alt="${f.name}" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-50 ring-2 ring-blue-100">
+                    <h3 class="font-bold text-blue-900">${f.name}</h3>
+                    <p class="text-orange-600 text-xs font-semibold uppercase mb-2">${f.role}</p>
+                    <p class="text-gray-500 text-[10px] tracking-widest uppercase">${f.dept}</p>
+                    <div class="flex justify-center space-x-2 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-900"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-900"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Student Portal Simulation
+        const loginForm = document.getElementById('login-form');
+        const loginContainer = document.getElementById('login-form-container');
+        const dashboard = document.getElementById('portal-dashboard');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if(user === "MUT123" && pass === "password") {
+                loginContainer.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+            } else {
+                alert("Invalid Credentials. Hint: MUT123 / password");
+            }
+        });
+
+        function logout() {
+            loginContainer.classList.remove('hidden');
+            dashboard.classList.add('hidden');
+            document.getElementById('username').value = "";
+            document.getElementById('password').value = "";
+        }
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('contact-name');
+            const email = document.getElementById('contact-email');
+            const message = document.getElementById('contact-message');
+
+            if(name.value.trim() === "") {
+                document.getElementById('error-name').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('error-name').classList.add('hidden');
+            }
+
+            if(!email.value.includes('@')) {
+                document.getElementById('error-email').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('error-email').classList.add('hidden');
+            }
+
+            if(message.value.trim() === "") {
+                document.getElementById('error-message').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('error-message').classList.add('hidden');
+            }
+
+            if(isValid) {
+                // Success Modal Simulation
+                const successDiv = document.createElement('div');
+                successDiv.className = "fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm";
+                successDiv.innerHTML = `
+                    <div class="bg-white p-8 rounded-3xl text-center max-w-xs fade-in">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-blue-900">Inquiry Sent!</h2>
+                        <p class="text-gray-500 text-sm mt-2">Thank you for reaching out. Our admissions team will contact you within 24 hours.</p>
+                        <button onclick="this.parentElement.parentElement.remove()" class="mt-6 w-full py-2 bg-blue-900 text-white rounded-lg font-bold">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(successDiv);
+                contactForm.reset();
+            }
+        });
+
+        // Initialize
+        window.onload = () => {
+            loadFaculty();
+            showSection('home');
+        };
+    </script>
+</body>
+</html>
+
+
